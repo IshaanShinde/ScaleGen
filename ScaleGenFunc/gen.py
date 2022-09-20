@@ -12,16 +12,23 @@ def generate_mode_sequence(user_input, modes, mode_sequence):
 
 def make_temp_scale(user_input, sharp_keys, flat_keys, all_sharp_keys, all_flat_keys):
     temp_list = []
-    scale_type = user_input[2]
-    match scale_type:
-        case 'b':
-            temp_list = flat_keys * 2
-        case '#':
-            temp_list = sharp_keys * 2
-        case 'bb':
-            temp_list = all_flat_keys * 2
-        case '##':
-            temp_list = all_sharp_keys * 2
+    if user_input[1] == 'rel':
+        match user_input[2]:
+            case 'major':
+                temp_list = flat_keys * 2
+            case 'minor':
+                temp_list = sharp_keys * 2
+    else:
+        scale_type = user_input[2]
+        match scale_type:
+            case 'b':
+                temp_list = flat_keys * 2
+            case '#':
+                temp_list = sharp_keys * 2
+            case 'bb':
+                temp_list = all_flat_keys * 2
+            case '##':
+                temp_list = all_sharp_keys * 2
     return temp_list
 
 
@@ -52,3 +59,11 @@ def generate_scale(user_input, sharp_keys, flat_keys, all_sharp_keys, all_flat_k
         i_k += generated_mode_sequence[i]
     generated_scale.append(temp_scale[key_index])
     return generated_scale
+
+
+def generate_relative_major(scale):
+    return scale[2]
+
+
+def generate_relative_minor(scale):
+    return scale[5]

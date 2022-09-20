@@ -8,7 +8,8 @@ sharp_keys = ('A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#')
 all_sharp_keys = ('A', 'A#', 'B', 'B#', 'C#', 'D', 'D#', 'E', 'E#', 'F#', 'G', 'G#')
 
 all_keys = (
-'A', 'A#', 'Ab', 'B', 'B#', 'Bb', 'C', 'C#', 'Cb', 'D', 'D#', 'Db', 'E', 'E#', 'Eb', 'F', 'F#', 'Fb', 'G', 'G#', 'Gb')
+    'A', 'A#', 'Ab', 'B', 'B#', 'Bb', 'C', 'C#', 'Cb', 'D', 'D#', 'Db', 'E', 'E#', 'Eb', 'F', 'F#', 'Fb', 'G', 'G#',
+    'Gb')
 
 modes = ('ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian')
 mode_sequence = (2, 2, 1, 2, 2, 2, 1)
@@ -34,9 +35,28 @@ while flag:
         continue
 
     if user_io.check_user_input(user_input, all_keys, modes):
-        generated_mode_sequence = gen.generate_mode_sequence(user_input[1], modes, mode_sequence)
 
-        generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
-                                             all_sharp_keys, all_flat_keys,
-                                             generated_mode_sequence)
-        print(*generated_scale, sep=' ')
+        if user_input[1] == 'rel':
+            match user_input[2]:
+                case 'major':
+                    rel_key_mode_sequence = gen.generate_mode_sequence('aeolian', modes, mode_sequence)
+                    rel_generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
+                                                            all_sharp_keys, all_flat_keys,
+                                                            rel_key_mode_sequence)
+                    rel = gen.generate_relative_major(rel_generated_scale)
+                    print(f'{rel}\n')
+                case 'minor':
+                    rel_key_mode_sequence = gen.generate_mode_sequence('ionian', modes, mode_sequence)
+                    rel_generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
+                                                             all_sharp_keys, all_flat_keys,
+                                                             rel_key_mode_sequence)
+                    rel = gen.generate_relative_major(rel_generated_scale)
+                    print(f'{rel}\n')
+
+        if user_input[1] in modes:
+            generated_mode_sequence = gen.generate_mode_sequence(user_input[1], modes, mode_sequence)
+
+            generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
+                                                 all_sharp_keys, all_flat_keys,
+                                                 generated_mode_sequence)
+            print(*generated_scale, sep=' ')
