@@ -23,18 +23,34 @@ def accept_user_input():
 
 
 def check_user_input(user_input, keys, modes):
+    check_list = ['rel', 'major', 'minor']
     if user_input[0] not in keys:
         print('Invalid Key\n')
         return False
-    if user_input[1] not in modes and user_input[1] != 'rel':
+    if user_input[1] not in modes and user_input[1] not in check_list:
         print('Invalid Mode/Command\n')
         return False
+    if len(user_input) == 2:
+        match user_input[1]:
+            case 'rel':
+                print('major or minor Required as the last input\n')
+                return False
+            case 'major':
+                print('#, b, ## or bb Required as the last input\n')
+                return False
+            case 'minor':
+                print('#, b, ## or bb Required as the last input\n')
+                return False
+        if user_input[1] in modes:
+            print('#, b, ## or bb Required as the last input\n')
+            return False
+
     if len(user_input) == 3:
         if user_input[1] == 'rel' and user_input[2] not in ['major', 'minor']:
             print('Input after rel should be major or minor\n')
             return False
         if user_input[1] != 'rel' and user_input[2] not in ['#', '##', 'b', 'bb']:
-            print('# or b Required as the last input\n')
+            print('#, b, ## or bb Required as the last input\n')
             return False
     return True
 
