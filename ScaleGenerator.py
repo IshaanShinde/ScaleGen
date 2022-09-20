@@ -16,10 +16,19 @@ mode_sequence = (2, 2, 1, 2, 2, 2, 1)
 
 cl_option_list = ('Invalid Instruction', 'modes')
 
-print('''Enter:    Key Mode Scale_Type    to get the scale you want.
-Example:  Ab Locrian b
-          C lydian b
-          Bb minor #
+print('''Key Mode Scale_Type:    Ab Locrian #
+                        C lydian b
+                        Bb minor ##   --to get the scale you want for Key.
+                        
+                        ##, bb will make notes #,b wherever possible:
+                        For example D cannot be # or b of another note:
+                        C##, Ebb is just stupid.
+                        
+Key rel major:          F# rel minor
+    rel minor:          G rel major
+                        Eb rel minor  --to get the relative minor of Key.
+                        
+          
 You can enter "exit" to stop the code and "modes" to get a list of them(incase you forgot)
 
 Note: Keys are case sensitive (lower cases are reserved for further features), modes are not.''')
@@ -60,3 +69,4 @@ while flag:
                                                  all_sharp_keys, all_flat_keys,
                                                  generated_mode_sequence)
             print(*generated_scale, sep=' ')
+            print()
