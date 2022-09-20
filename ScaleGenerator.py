@@ -50,7 +50,7 @@ while flag:
                     rel_generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
                                                              all_sharp_keys, all_flat_keys,
                                                              rel_key_mode_sequence)
-                    rel = gen.generate_relative_major(rel_generated_scale)
+                    rel = gen.generate_relative_minor(rel_generated_scale)
                     print(f'{rel}\n')
 
         if user_input[1] in modes:
