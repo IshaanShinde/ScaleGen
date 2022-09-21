@@ -1,5 +1,4 @@
-from ScaleGenFunc import user_io
-from ScaleGenFunc import gen
+from ScaleGenFunc import user_io, gen
 
 flat_keys = ('A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab')
 all_flat_keys = ('A', 'Bb', 'Cb', 'C', 'Db', 'D', 'Eb', 'Fb', 'F', 'Gb', 'G', 'Ab')

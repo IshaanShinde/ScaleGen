@@ -2,7 +2,9 @@ def accept_user_input():
     temp_user_input = input()
     list_temp_user_input = temp_user_input.split(' ')
 
-    if len(list_temp_user_input) == 3:
+    len_list_ui = len(list_temp_user_input)
+
+    if len_list_ui == 3:
         list_temp_user_input[1] = list_temp_user_input[1].lower()
 
         if list_temp_user_input[1] == 'rel':
@@ -12,24 +14,29 @@ def accept_user_input():
             list_temp_user_input[1] = list_temp_user_input[1].replace('minor', 'aeolian')
             return list_temp_user_input
 
-    if len(list_temp_user_input) == 2:
-        return list_temp_user_input
-    if list_temp_user_input[0] in ['modes', 'exit']:
+    if len_list_ui == 2:
+        list_temp_user_input[1] = list_temp_user_input[1].lower()
         return list_temp_user_input
 
-    else:
-        list_temp_user_input = ["Invalid Instruction"]
-        return list_temp_user_input
+    if len_list_ui == 1:
+        if list_temp_user_input[0] in ['modes', 'exit']:
+            return list_temp_user_input
+
+    list_temp_user_input = ["Invalid Instruction"]
+    return list_temp_user_input
 
 
 def check_user_input(user_input, keys, modes):
     check_list = ['rel', 'major', 'minor']
+
     if user_input[0] not in keys:
         print('Invalid Key\n')
         return False
+
     if user_input[1] not in modes and user_input[1] not in check_list:
-        print('Invalid Mode/Command\n')
+        print('Invalid Command\n')
         return False
+
     if len(user_input) == 2:
         match user_input[1]:
             case 'rel':
@@ -49,6 +56,7 @@ def check_user_input(user_input, keys, modes):
         if user_input[1] == 'rel' and user_input[2] not in ['major', 'minor']:
             print('Input after rel should be major or minor\n')
             return False
+
         if user_input[1] != 'rel' and user_input[2] not in ['#', '##', 'b', 'bb']:
             print('#, b, ## or bb Required as the last input\n')
             return False
