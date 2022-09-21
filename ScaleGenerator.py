@@ -46,7 +46,8 @@ Key rel major:          F# rel minor
     rel minor:          G rel major
                         Eb rel minor  --to get the relative minor of Key.
                         
-          
+Key all:                to get everything
+     
 You can enter "exit" to stop the code and "modes" to get a list of them(incase you forgot)
 
 Note: Keys are case sensitive (lower cases are reserved for further features), modes are not.''')
