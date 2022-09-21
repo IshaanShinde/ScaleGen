@@ -3,20 +3,20 @@ from ScaleGenFunc import user_io, gen
 
 def rel_major():
     rel_key_mode_sequence = gen.generate_mode_sequence('aeolian', modes, mode_sequence)
-    rel_generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
+    rel_generated_scale = gen.generate_scale([user_input[0], 'aeolian', 'b'], sharp_keys, flat_keys,
                                              all_sharp_keys, all_flat_keys,
                                              rel_key_mode_sequence)
     rel = gen.generate_relative_major(rel_generated_scale)
-    print(f'{rel}\n')
+    print(f'Relative Major: {rel}\n')
 
 
 def rel_minor():
     rel_key_mode_sequence = gen.generate_mode_sequence('ionian', modes, mode_sequence)
-    rel_generated_scale = gen.generate_scale(user_input, sharp_keys, flat_keys,
+    rel_generated_scale = gen.generate_scale([user_input[0], 'ionian', 'b'], sharp_keys, flat_keys,
                                              all_sharp_keys, all_flat_keys,
                                              rel_key_mode_sequence)
     rel = gen.generate_relative_minor(rel_generated_scale)
-    print(f'{rel}\n')
+    print(f'Relative Minor: {rel}\n')
 
 
 flat_keys = ('A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab')
@@ -78,3 +78,23 @@ while flag:
                                                  generated_mode_sequence)
             print(*generated_scale, sep=' ')
             print()
+
+        if user_input[1] == 'all':
+            rel_major()
+            rel_minor()
+
+            for i in modes:
+                for j in ['b', '#']:
+                    generated_mode_sequence = gen.generate_mode_sequence(i, modes, mode_sequence)
+                    generated_scale = gen.generate_scale([user_input[0], i, j], sharp_keys, flat_keys,
+                                                        all_sharp_keys, all_flat_keys,
+                                                        generated_mode_sequence)
+                    if j == 'b':
+                        f_mode = '{:12}'.format(i)
+                        print(f'{f_mode}:', end=' ')
+                        print(*generated_scale, sep=' ')
+                    else:
+                        print(f'            :', end=' ')
+                        print(*generated_scale, sep=' ')
+
+                print()

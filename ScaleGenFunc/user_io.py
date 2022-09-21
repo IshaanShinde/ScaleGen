@@ -27,7 +27,7 @@ def accept_user_input():
 
 
 def check_user_input(user_input, keys, modes):
-    check_list = ['rel', 'major', 'minor']
+    check_list = ['rel', 'major', 'minor', 'all']
 
     if user_input[0] not in keys:
         print('Invalid Key\n')
